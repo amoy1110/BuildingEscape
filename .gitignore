@@ -1,0 +1,13 @@
+*/Build/
+*/Binaries
+*/DerivedDataCache
+*/Intermediate/
+*/Saved
+BuildingEscape/Content/StarterContent/Textures
+BuildingEscape/Content/StarterContent/HDRI
+
+*.VC.db
+*.suo
+BuildingEscape/Content/StarterContent/
+BuildingEscape/ipch/BUILDINGESCAPE-eabedf5f/BUILDINGESCAPE-8775d22.ipch
+*.sln
