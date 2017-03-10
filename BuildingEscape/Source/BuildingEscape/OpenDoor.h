@@ -26,7 +26,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 	
 private:
 	UPROPERTY(EditAnywhere)
@@ -41,7 +40,10 @@ private:
 	float LastDoorOpenTime;
 
 	//UPROPERTY(EditAnywhere)
-	AActor* ActorThatOpens; // pawn inherits from actor
+	//AActor* ActorThatOpens; // pawn inherits from actor. no longer needed because we want 
 
 	AActor* Owner;
+
+	// Returns total mass in kg
+	float GetTotalMassOfActorsOnPlate();
 };

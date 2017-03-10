@@ -11,3 +11,5 @@ BuildingEscape/Content/StarterContent/HDRI
 BuildingEscape/Content/StarterContent/
 BuildingEscape/ipch/BUILDINGESCAPE-eabedf5f/BUILDINGESCAPE-8775d22.ipch
 *.sln
+*.VC.opendb
+*.ipch
