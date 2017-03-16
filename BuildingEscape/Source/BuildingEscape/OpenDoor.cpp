@@ -25,6 +25,11 @@ void UOpenDoor::BeginPlay()
 
 	//OpenDoor();
 	//ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn(); // A pawn IS an actor, so you can set a pawn into an AActor variable
+
+	if (!PressurePlate)
+	{
+		UE_LOG(LogTemp, Error, TEXT("%s is missing Pressure Plate."), *GetOwner()->GetName())
+	}
 }
 
 void UOpenDoor::OpenDoor()
@@ -66,6 +71,7 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 	
 	// Find all the overlapping actors
 	TArray<AActor*> OverlappingActors;	
+	if (!PressurePlate) { return TotalMass; }
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 
 	for (const auto& Actor : OverlappingActors)
