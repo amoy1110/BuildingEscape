@@ -32,6 +32,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	if(showDebugLine) DrawLineTrace();
+
 	if (!PhysicsHandle) { return; }
 	// if the physics handle is attached
 	if (PhysicsHandle->GrabbedComponent)
@@ -79,7 +81,8 @@ void UGrabber::Grab()
 	/// If we hit something, then attach a phyics handle
 	if (ActorHit) {
 		// attach physics handle
-		PhysicsHandle->GrabComponent(ComponentToGrab, NAME_None, ComponentToGrab->GetOwner()->GetActorLocation(), true);
+		//PhysicsHandle->GrabComponent(ComponentToGrab, NAME_None, ComponentToGrab->GetOwner()->GetActorLocation(), true);
+		PhysicsHandle->GrabComponentAtLocation(ComponentToGrab, NAME_None, ComponentToGrab->GetOwner()->GetActorLocation());
 	}
 }
 
@@ -93,21 +96,7 @@ void UGrabber::Release()
 const FHitResult UGrabber::GetFirstPhyicsBodyInReach()
 {
 	// If phyics handle is attached
-	// Move the object we are holding
-
-	/*
-	/// draw a red trace
-	DrawDebugLine(
-	GetWorld(),
-	PlayerViewPointLocation,
-	LineTraceEnd,
-	FColor(255, 0, 0),
-	false,
-	0.f,
-	0.f,
-	10.f
-	);
-	*/
+	// Move the object we are holding	
 
 	/// Setup query parameters
 	FCollisionQueryParams TraceParameters(FName(TEXT("")), false, GetOwner());
@@ -159,4 +148,19 @@ FVector UGrabber::GetReachLineEnd()
 
 	return PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
 
+}
+
+void UGrabber::DrawLineTrace()
+{
+	/// draw a red trace
+	DrawDebugLine(
+		GetWorld(),
+		GetReachLineStart(),
+		GetReachLineEnd(),
+		FColor(255, 0, 0),
+		false,
+		0.f,
+		0.f,
+		5.f
+	);
 }

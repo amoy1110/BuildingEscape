@@ -12,7 +12,7 @@ class BUILDINGESCAPE_API UGrabber : public UActorComponent
 	GENERATED_BODY()
 
 private:
-	float Reach = 200.f;
+	float Reach = 500.f;
 
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 	UInputComponent* InputComponent = nullptr;
@@ -36,6 +36,11 @@ private:
 
 	// Returns current end of reach line
 	FVector GetReachLineEnd();
+
+	void DrawLineTrace();
+
+	UPROPERTY(EditAnywhere)
+	bool showDebugLine = false;
 
 protected:
 	// Called when the game starts
